@@ -1,6 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+    <!-- Email JS start -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('dlGYzs_WN0_oecDv2');
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('contact_service', 'contact_form', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
+    <!-- Email JS start -->
+
+
+
     <!-- Meta Tag -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -51,19 +80,41 @@
     <div id="page_wrapper">
       <div class="row">
         <!-- Header Section Start -->
-        <header class="nav-on-banner header-transparent fixed-bg-secondary">
-          <div class="main-nav">
+        <header class="standard-header nav-on-top">
+          <div class="top-header sm-mx-none bg-danger">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <ul class="top-contact">
+                    <li>
+                      <a href="#" class="text-white"
+                        ><i class="fas fa-phone mr-1"></i>Emergency Line : +1 (847)-306-3340</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="text-white"
+                        ><i class="fas fa-envelope mr-1"></i
+                        >support@uscpds.com</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="main-nav bg-white">
             <div class="container">
               <div class="row">
                 <div class="col-md-12">
                   <nav
-                    class="navbar navbar-expand-lg navbar-light nav-white nav-primary-hover py-1"
+                    class="navbar navbar-expand-lg navbar-light nav-secondary nav-primary-hover py-2 transation"
                   >
-                    <a class="navbar-brand" href="index.html"
+                    <a class="navbar-brand" href="index-medical.html.html"
                       ><img
                         class="nav-logo"
                         src="assets/images/logos/logo.png"
-                        width="130"
+                        width = "140"
                         alt="Image not found"
                     /></a>
                     <button
@@ -92,14 +143,10 @@
                           <a class="nav-link" href="#">Services</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Download Order Form</a>
+                          <a class="nav-link" href = "\templates\assets\CarePlus_RequisitionForm_2868.pdf" download = "CarePlus_RequisitionForm">Download Order Form</a>
                         </li>
                         <li class="nav-item">
-                          <a
-                            class="nav-link"
-                            href="https://www.rapidrad.com/login/"
-                            >Facility Login</a
-                          >
+                          <a class="nav-link" href="#">Facility Login</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="#">Contact</a>
@@ -144,19 +191,6 @@
         </div>
         <!--  Banner End -->
 
-        <!--  Map Start -->
-        <div class="full-row p-0">
-          <div class="container-fluid">
-            <div class="row">
-              <div
-                id="map"
-                style="height: 500px; width: 100%; overflow: hidden"
-              ></div>
-            </div>
-          </div>
-        </div>
-        <!--  Map End -->
-
         <!--  Depeartment Start -->
         <div class="full-row bg-light">
           <div class="container">
@@ -164,12 +198,13 @@
               <div class="col-lg-7">
                 <div class="row">
                   <div class="col-lg-12">
-                    <h3 class="down-line w-100 my-4">Send Us Message</h3>
+                    <h3 class="down-line w-100 my-4">Send Us A Message</h3>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 mb-3">
-                    <form action="#" method="post">
+                    <!-- Contact-Form -->
+                    <form id="contact-form" action="#" method="post">
                       <div class="form-group">
                         <input
                           type="text"
@@ -215,65 +250,16 @@
                         <a href="#" class="btn btn-primary">Send</a>
                       </div>
                     </form>
+
                   </div>
                 </div>
               </div>
               <div class="col-lg-5">
                 <div class="sidebar-widget">
                   <div class="widget doctors-info">
-                    <div class="bg-white doctors shadow-sm px-30 py-5">
-                      <div class="item mb-5 transation">
-                        <div class="float-left mr-3">
-                          <img
-                            src="assets/images/doctor_2/9.png"
-                            alt="Image not found!"
-                          />
-                        </div>
-                        <div class="d-table">
-                          <h6 class="text-secondary">Our Office Location</h6>
-                          <span class="font-13"
-                            >2868 Skokie Valley Rd STE 4, Highland Park, IL,
-                            60035</span
-                          >
-                        </div>
+                      <h3 class="down-line w-100 my-4">Location</h3>
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2955.4686028451806!2d-87.83890062442227!3d42.2044283449206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc017c6a3f999%3A0x40d8265fb44dcd7f!2s2868%20Skokie%20Valley%20Rd%2C%20Highland%20Park%2C%20IL%2060035!5e0!3m2!1sen!2sus!4v1699243159147!5m2!1sen!2sus" width="500" height="425" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                       </div>
-                      <div class="item mb-5 transation">
-                        <div class="float-left mr-3">
-                          <img
-                            src="assets/images/doctor_2/10.png"
-                            alt="Image not found!"
-                          />
-                        </div>
-                        <div class="d-table">
-                          <h6 class="text-secondary">Phone Number</h6>
-                          <span class="font-13">(847)-306-3340</span>
-                        </div>
-                      </div>
-                      <div class="item mb-5 transation">
-                        <div class="float-left mr-3">
-                          <img
-                            src="assets/images/doctor_2/10.png"
-                            alt="Image not found!"
-                          />
-                        </div>
-                        <div class="d-table">
-                          <h6 class="text-secondary">Phone Number</h6>
-                          <span class="font-13">(847)-306-3340</span>
-                        </div>
-                      </div>
-                      <div class="item transation">
-                        <div class="float-left mr-3">
-                          <img
-                            src="assets/images/doctor_2/12.png"
-                            alt="Image not found!"
-                          />
-                        </div>
-                        <div class="d-table">
-                          <h6 class="text-secondary">Email Address</h6>
-                          <span class="font-13">(847)-306-3340</span>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -283,101 +269,55 @@
         <!--  Depeartment End -->
 
         <!-- Footer start -->
-        <footer class="full-row py-5">
+        <footer class="full-row bg-secondary">
           <div class="container">
             <div class="row">
-              <div class="col-lg-3 col-md-6">
-                <div class="footer-widget footer-nav mb-4 transation">
-                  <h3 class="widget-title mb-4">Page Links</h3>
-                  <ul>
-                    <li><a href="#">Get an Appointment</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Find A Doctors</a></li>
-                    <li><a href="#">Help and Support</a></li>
-                    <li><a href="#">Patient FAQ's</a></li>
-                    <li><a href="#">Our Services</a></li>
-                    <li><a href="#">Health Tips and Solutation</a></li>
-                    <li><a href="#">Emeargency Contact</a></li>
-                  </ul>
+              
+              <!-- <div class="col-lg-12"> -->
+                <div class="col-lg-3 col-md-6">
+                  <div class=" text-white footer-widget footer-nav mb-4 transation">
+                    <h3 class="text-white widget-title mb-4">Quick Contact</h3>
+                    <ul>
+                    <li><a class="text-white" href="#">Phone: +1 (847)-306-3340</a></li>
+                    <li><a class="text-white" href="#">Fax: (847)-306-3475</a></li>
+                    <li><a class="text-white" href="#">Email: support@uscpds.com</a></li>
+                    <li><a class="text-white" href="#">Location: </a></li>
+                    <li><a class="text-white" href="#">2868 Skokie Valley Rd STE 4, <br> Highland Park, IL, 60035</a></li>
+                    </ul>
+                  </div>
+                  </div>
+    
+                  <div class="col-lg-9">
+                  <h1 class="text-center text-white font-italic w-sm-100 text-right">We strive to make healthcare a seamless and empowering experience!</h1>
+                  <p class="w-50 text-light text-center mt-5 mx-auto w-sm-100 text-right">We're here to provide you with the highest quality diagnostics and care. Discover the path to better health with us today</p>
                 </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <div class="footer-widget footer-nav mb-4 transation">
-                  <h3 class="widget-title mb-4">Our Depeartment</h3>
-                  <ul>
-                    <li><a href="#">Medecine and Health</a></li>
-                    <li><a href="#">Dental Care and Surgery</a></li>
-                    <li><a href="#">Laboratory Test</a></li>
-                    <li><a href="#">Eye Treatment</a></li>
-                    <li><a href="#">Physiotheraphy Center</a></li>
-                    <li><a href="#">Physiotheraphy Center</a></li>
-                    <li><a href="#">Children Chare and Treatment</a></li>
-                    <li><a href="#">Children Chare and Treatment</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <div class="footer-widget post-widget mb-5 transation">
-                  <h4 class="widget-title mb-4">Recent News</h4>
-                  <ul>
-                    <li>
-                      <a href="#"
-                        >Mauris adioiscing mauris fringilla turpis interdum
-                        pulvinar</a
-                      ><span>2 hours ago</span>
-                    </li>
-                    <li>
-                      <a href="#"
-                        >Lorem ipsum dolor sit, consectetur adipiscing elit.</a
-                      ><span>2 hours ago</span>
-                    </li>
-                    <li>
-                      <a href="#"
-                        >Mauris adioiscing mauris fringilla turpis interdum
-                        pulvinar</a
-                      ><span>2 hours ago</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <div
-                  class="footer-widget newslatter-widget mb-4 text-secondary transation"
-                >
-                  <h4 class="widget-title mb-4">Newslatter</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet, consec tetur adipiscing elit,sed
-                    do eiusmod tempor incididunt ut labore.
-                  </p>
-                  <form action="#" class="subscribe-widget">
-                    <input
-                      class="form-control border"
-                      type="text"
-                      placeholder="Email Address"
-                      aria-label="Address"
-                    />
-                    <button class="btn btn-primary" type="submit">
-                      Subscribe
-                    </button>
-                  </form>
-                </div>
-              </div>
+              <!-- </div> -->
             </div>
           </div>
         </footer>
-        <!-- Footer end -->
-
-        <!--  Copyright Section Start  -->
-        <div class="full-row copyright py-3 border-top text-center">
+        <div class="full-row bg-dark py-4">
           <div class="container">
             <div class="row">
-              <div class="col-md-12">
-                <span> © Copyright 2020. All Rights Reserved by Unicoder </span>
+              <div class="col-lg-8">
+                <ul class="bottom-nav">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about-us.html">About Us</a></li>
+                  <li><a href="#">Services</a></li>
+                  <li><a href="#">Download Order Form</a></li>
+                  <li><a href="#">Facility Login</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-4">
+                <div class="copyright"> <span>&copy; 2020 All Rights Reserved</a></span> </div>
               </div>
             </div>
           </div>
         </div>
-        <!--  Copyright Section end  -->
+        <a href="#" class="bg-primary text-white" id="scroll"><i class="fa fa-angle-up"></i></a>
+      </div>
+    </div>	
+        <!-- Footer end -->
 
         <!--   Scroll to top start  -->
         <a
